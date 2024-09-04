@@ -1,0 +1,16 @@
+Programul este un router simplu care primește și trimite pachete de rețea folosind protocoalele Ethernet, ARP și IPv4. 
+Este capabil să analizeze pachetele primite și să le routeze pe baza informațiilor din tabelele de rutare și ARP.
+
+Înainte de a intra în funcționalitatea principală, programul inițializează și pregătește resursele necesare, 
+cum ar fi tabelele de rutare și de protocol ARP. Tabelele sunt populate cu informații citite dintr-un fișier de configurare specificat la rulare.
+
+Programul rulează într-o buclă continuă, așteptând să primească pachete de la interfețele rețelei. Când un pachet este recepționat, 
+este analizat pentru a determina natura sa și modul de tratare corespunzător.
+
+Dacă pachetul este de tip ARP, programul răspunde în consecință sau actualizează tabela ARP cu noile informații despre adresele IP și MAC ale 
+dispozitivelor din rețea.
+
+Dacă pachetul este un pachet IPv4, programul verifică suma de control a antetului IP și identifică ruta optimă către destinație, 
+bazându-se pe informațiile din tabela de rutare. În cazul în care ruta este găsită, programul verifică dacă are adresa MAC corespunzătoare în tabela ARP. 
+În caz contrar, trimite o cerere ARP pentru a o obține. După obținerea adresei MAC, actualizează header-ul Ethernet al pachetului 
+și îl trimite către destinație prin interfața corespunzătoare.
